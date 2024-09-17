@@ -1,3 +1,4 @@
+const Enums = require('../enums');
 
 module.exports = (sequelize, Sequelize) => {
     const orderItems = sequelize.define(

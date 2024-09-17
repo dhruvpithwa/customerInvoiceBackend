@@ -37,9 +37,5 @@ module.exports = (sequelize, Sequelize) => {
         }
     );
 
-    order.associate = (models) => {
-        models.order.hasMany(models.orderItems);
-    };
-
     return order;
 };
