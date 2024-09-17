@@ -1,6 +1,5 @@
 const Joi = require('joi');
 const Enums = require('../enums');
-const priceType = require('../enums/priceType');
 
 module.exports = {
     validateAddProductObj: (productObj) => {

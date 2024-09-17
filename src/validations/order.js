@@ -1,9 +1,11 @@
 const Joi = require('joi');
+const Enums = require('../enums');
 
 module.exports = {
     validateCreateOrderObj: (orderObj) => {
         
         const orderItems = Joi.object().keys({
+            productId: Joi.string().trim().required(),
             name: Joi.string().trim().required(),
             quantity: Joi.number().greater(0).required(),
             productPrice: Joi.number().greater(0).required(),
