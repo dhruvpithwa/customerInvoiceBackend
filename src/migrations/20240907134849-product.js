@@ -20,6 +20,10 @@ module.exports = {
         type: Sequelize.ENUM(Object.values(Enums.product)),
         defaultValue: Enums.product.WEIGHTED
       },
+      priceType: {
+        type: Sequelize.ENUM(Object.values(Enums.priceType)),
+        defaultValue: Enums.product.RETAIL
+      },
       createdAt: {
         type: Sequelize.DATE
       },

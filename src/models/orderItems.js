@@ -9,18 +9,30 @@ module.exports = (sequelize, Sequelize) => {
                 unique: true,
                 defaultValue: Sequelize.UUIDV4
             },
+            name: {
+                type: Sequelize.TEXT
+            },
             quantity: {
                 type: Sequelize.DOUBLE
             },
-            price: {
+            productPrice: {
                 type: Sequelize.DOUBLE
+            },
+            totalPrice: {
+                type: Sequelize.DOUBLE
+            },
+            type: {
+                type: Sequelize.ENUM(Object.values(Enums.product))
+            },
+            priceType: {
+                type: Sequelize.ENUM(Object.values(Enums.priceType))
             }
+
         }
     );
 
     orderItems.associate = (models) => {
         models.orderItems.belongsTo(models.order);
-        models.orderItems.belongsTo(models.product);
     };
 
     return orderItems;

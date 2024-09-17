@@ -4,20 +4,23 @@ module.exports = {
     validateCreateOrderObj: (orderObj) => {
         
         const orderItems = Joi.object().keys({
-            productId: Joi.string().guid().required(),
+            name: Joi.string().trim().required(),
             quantity: Joi.number().greater(0).required(),
-            price: Joi.number().greater(0).required()
+            productPrice: Joi.number().greater(0).required(),
+            totalPrice: Joi.number().greater(0).required(),
+            type: Joi.string().trim().valid(Object.values(Enums.product)).required(),
+            priceType: Joi.string().trim().valid(Object.values(Enums.priceType)).required()
         });
         
         const schema = Joi.object().keys({
             orderNumber: Joi.string().trim().required(),
             orderDate: Joi.string().trim().required(),
-            customerName: Joi.string().trim().optional(),
-            customerMobile: Joi.string().trim().optional(),
+            customerName: Joi.string().trim().allow("").optional(),
+            customerMobile: Joi.string().trim().allow("").optional(),
             subTotal: Joi.number().greater(0).required(),
             total: Joi.number().greater(0).required(),
-            tax: Joi.number().greater(0).required(),
-            taxPercent: Joi.number().greater(0).required(),
+            tax: Joi.number().greater(-1).required(),
+            taxPercent: Joi.number().greater(-1).required(),
             orderItems: Joi.array().items(orderItems).required()
         });
         return Joi.validate(orderObj, schema);

@@ -10,20 +10,23 @@ module.exports = {
         unique: true,
         defaultValue: uuidv1(),
       },
+      name: {
+        type: Sequelize.TEXT
+      },
       quantity: {
         type: Sequelize.DOUBLE
       },
-      price: {
+      productPrice: {
         type: Sequelize.DOUBLE
       },
-      productId: {
-        type: Sequelize.UUID,
-        references: {
-          model: 'products',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+      totalPrice: {
+        type: Sequelize.DOUBLE
+      },
+      type: {
+        type: Sequelize.ENUM(Object.values(Enums.product))
+      },
+      priceType: {
+        type: Sequelize.ENUM(Object.values(Enums.priceType))
       },
       orderId: {
         type: Sequelize.UUID,
