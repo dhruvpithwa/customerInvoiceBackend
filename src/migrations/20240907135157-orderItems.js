@@ -25,9 +25,6 @@ module.exports = {
       type: {
         type: Sequelize.ENUM(Object.values(Enums.product))
       },
-      priceType: {
-        type: Sequelize.ENUM(Object.values(Enums.priceType))
-      },
       orderId: {
         type: Sequelize.UUID,
         references: {

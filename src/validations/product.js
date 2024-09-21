@@ -6,8 +6,7 @@ module.exports = {
         const schema = Joi.object().keys({
             name: Joi.string().trim().required(),
             pricePerKg: Joi.number().greater(0).required(),
-            type: Joi.string().trim().valid(Object.values(Enums.product)).required(),
-            priceType: Joi.string().trim().valid(Object.values(Enums.priceType)).required()
+            type: Joi.string().trim().valid(Object.values(Enums.product)).required()
         });
         return Joi.validate(productObj, schema);
     },
@@ -16,8 +15,7 @@ module.exports = {
             id: Joi.string().guid().trim().required(),
             name: Joi.string().trim().optional(),
             pricePerKg: Joi.number().greater(0).optional(),
-            type: Joi.string().trim().valid(Object.values(Enums.product)).optional(),
-            priceType: Joi.string().trim().valid(Object.values(Enums.priceType)).optional()
+            type: Joi.string().trim().valid(Object.values(Enums.product)).optional()
         });
         return Joi.validate(productObj, schema);
     },

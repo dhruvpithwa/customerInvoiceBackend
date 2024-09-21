@@ -18,9 +18,6 @@ module.exports = (sequelize, Sequelize) => {
             },
             type: {
                 type: Sequelize.ENUM(Object.values(Enums.product))
-            },
-            priceType: {
-                type: Sequelize.ENUM(Object.values(Enums.priceType))
             }
         }
     );

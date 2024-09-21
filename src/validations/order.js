@@ -10,8 +10,7 @@ module.exports = {
             quantity: Joi.number().greater(0).required(),
             productPrice: Joi.number().greater(0).required(),
             totalPrice: Joi.number().greater(0).required(),
-            type: Joi.string().trim().valid(Object.values(Enums.product)).required(),
-            priceType: Joi.string().trim().valid(Object.values(Enums.priceType)).required()
+            type: Joi.string().trim().valid(Object.values(Enums.product)).required()
         });
         
         const schema = Joi.object().keys({
