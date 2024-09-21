@@ -2,6 +2,32 @@
 const Services = require('../services');
 const Validations = require('../validations');
 
+let weight = 2;
+
+
+// const { SerialPort } = require('serialport');
+// const { ReadlineParser} = require('@serialport/parser-readline');
+
+// const port = new SerialPort('/dev/cu.usbserial-14720', {
+//     baudRate: 9600
+// })
+
+// const parser = port.pipe(new ReadlineParser({ delimiter: '\n' }));
+// port.on('open', ()=> {
+//     console.log("Serial port opened");
+// })
+
+// parser.on('data', (line) => {
+//     const data = Number(line);
+//     if(data !== weight){
+//         weight = data;
+//     }
+// })
+
+// port.on('error', (e)=>{
+//     console.log("Error",  e.message);
+// })
+
 module.exports = {
     addProduct: async(req, res) => {
         try{
@@ -133,7 +159,7 @@ module.exports = {
             return res.status(200).send({
                 status:200,
                 message: 'weights fetched successfully',
-                data: { weight: 2 }
+                data: { weight: weight }
             })
         }
         catch(error){
