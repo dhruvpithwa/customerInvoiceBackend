@@ -20,10 +20,19 @@ module.exports = {
             throw new Error(error);
         }
     },
+    deleteOrder: async (filterObj) => {
+        try {
+            const res = await db.order.destroy({ where: { id: filterObj.id }});
+            return res;
+        } catch (error) {
+            console.log(error);
+            throw new Error(error);
+        }
+    },
     listOrders: async (filterObj) => {
         try {
             const res = await db.order.findAndCountAll({ 
-                ...( filterObj.q !== "" ? {
+                ...( filterObj.q && filterObj.q !== "" ? {
                     where: {
                         orderNumber: {
                             [db.Sequelize.Op.iLike]: `%${filterObj.q}%`

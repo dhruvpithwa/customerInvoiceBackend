@@ -91,5 +91,29 @@ module.exports = {
                 message: error
             });
         }
-    }
+    },
+    deleteOrder: async(req, res) => {
+        try{
+            const response = await Services.order.deleteOrder({ id: req.params.orderId });
+            
+            if(response){
+                return res.status(200).send({
+                    status:200,
+                    message: 'order deleted successfully',
+                    data: response
+                })
+            }
+
+            return res.status(400).send({
+                status:400,
+                message: "order doesn't exist"
+            })
+            
+        }catch(error){
+            return res.status(500).send({
+                status:500,
+                message: error
+            })            
+        }
+    },
 }

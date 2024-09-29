@@ -25,5 +25,13 @@ module.exports= {
         } catch (error) {
             throw error;
         }
+    },
+    deleteOrder: async (payload) => {
+        try {
+            const res = await Dao.order.deleteOrder(payload);
+            return res;
+        } catch (error) {
+            throw error;
+        }
     }
 }

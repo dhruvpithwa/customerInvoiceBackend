@@ -9,5 +9,6 @@ module.exports = (router) => {
     router
         .route('/orders/:orderId')
         .get(Controller.order.getOrder)
+        .delete(Controller.order.deleteOrder)
 
 };
