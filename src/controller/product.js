@@ -2,31 +2,31 @@
 const Services = require('../services');
 const Validations = require('../validations');
 
-let weight = 2;
+let weight = 0;
 
+const { SerialPort } = require('serialport');
+const { ReadlineParser} = require('@serialport/parser-readline');
 
-// const { SerialPort } = require('serialport');
-// const { ReadlineParser} = require('@serialport/parser-readline');
+const port = new SerialPort({
+    path: '/dev/cu.usbserial-1420',
+    baudRate: 9600
+})
 
-// const port = new SerialPort('/dev/cu.usbserial-14720', {
-//     baudRate: 9600
-// })
+const parser = port.pipe(new ReadlineParser({ delimiter: '\n' }));
+port.on('open', ()=> {
+    console.log("Serial port opened");
+})
 
-// const parser = port.pipe(new ReadlineParser({ delimiter: '\n' }));
-// port.on('open', ()=> {
-//     console.log("Serial port opened");
-// })
+parser.on('data', (line) => {
+    const data = Number(line);
+    if(data !== weight){
+        weight = data;
+    }
+})
 
-// parser.on('data', (line) => {
-//     const data = Number(line);
-//     if(data !== weight){
-//         weight = data;
-//     }
-// })
-
-// port.on('error', (e)=>{
-//     console.log("Error",  e.message);
-// })
+port.on('error', (e)=>{
+    console.log("Error",  e.message);
+})
 
 module.exports = {
     addProduct: async(req, res) => {
